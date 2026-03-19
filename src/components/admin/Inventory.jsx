@@ -1,15 +1,11 @@
-import React from 'react';
-import styles from './Inventory.module.css';
-import { FiPlus, FiSearch, FiEdit2, FiTrash2, FiFilter } from 'react-icons/fi';
+'use client'
+import React, { useState } from 'react'
+import styles from './Inventory.module.css'
+import { FiPlus, FiEdit2, FiTrash2, FiSearch } from 'react-icons/fi'
+import AddProductModal from './AddProductModal'
 
-const Inventory = () => {
-  // Mock data for your ukay-ukay listings
-  const stock = [
-    { id: 'UK-001', name: 'Vintage Denim Jacket', category: 'Outerwear', price: 850, stock: 1, status: 'In Stock' },
-    { id: 'UK-002', name: 'Graphic Band Tee (L)', category: 'Tops', price: 350, stock: 0, status: 'Sold' },
-    { id: 'UK-003', name: 'High-Waist Corduroy Pants', category: 'Bottoms', price: 550, stock: 1, status: 'In Stock' },
-    { id: 'UK-004', name: 'Puffer Vest Navy', category: 'Outerwear', price: 700, stock: 2, status: 'In Stock' },
-  ];
+const Inventory = ({ products = [] }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <div className={styles.container}>
@@ -18,15 +14,15 @@ const Inventory = () => {
           <h1>Inventory Management</h1>
           <p>Manage and track your ukay-ukay stock levels.</p>
         </div>
-        <button className={styles.addBtn}>
-          <FiPlus /> Add New Item
+        <button className={styles.addBtn} onClick={() => setIsModalOpen(true)}>
+          <FiPlus /> Add Product
         </button>
       </header>
 
       <div className={styles.tableControls}>
         <div className={styles.searchBox}>
           <FiSearch />
-          <input type="text" placeholder="Search by item name or SKU..." />
+          <input placeholder="Search products..." />
         </div>
       </div>
 
@@ -34,39 +30,49 @@ const Inventory = () => {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>SKU</th>
               <th>Item Name</th>
               <th>Category</th>
-              <th>Price</th>
+              <th>Original</th>
+              <th>Discount</th>
+              <th>Final Price</th>
               <th>Stock</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {stock.map((item) => (
-              <tr key={item.id}>
-                <td className={styles.sku}>{item.id}</td>
-                <td className={styles.itemName}>{item.name}</td>
-                <td>{item.category}</td>
-                <td className={styles.price}>₱{item.price}</td>
-                <td>{item.stock}</td>
-                <td>
-                  <span className={item.status === 'Sold' ? styles.statusSold : styles.statusStock}>
-                    {item.status}
-                  </span>
-                </td>
-                <td className={styles.actions}>
-                  <button className={styles.editBtn} title="Edit"><FiEdit2 /></button>
-                  <button className={styles.deleteBtn} title="Delete"><FiTrash2 /></button>
-                </td>
-              </tr>
-            ))}
+            {products.map((item) => {
+              const finalPrice = item.price - (item.discount || 0);
+              return (
+                <tr key={item.id}>
+                  <td className={styles.itemName}>{item.name}</td>
+                  <td>{item.category || 'General'}</td>
+                  <td className={styles.oldPrice}>₱{item.price}</td>
+                  <td className={styles.discountText}>-₱{item.discount || 0}</td>
+                  <td className={styles.price}>₱{finalPrice}</td>
+                  <td>{item.stock}</td>
+                  <td>
+                    <span className={item.stock > 0 ? styles.statusStock : styles.statusSold}>
+                      {item.stock > 0 ? 'In Stock' : 'Sold Out'}
+                    </span>
+                  </td>
+                  <td className={styles.actions}>
+                    <button className={styles.editBtn}><FiEdit2 /></button>
+                    <button className={styles.deleteBtn}><FiTrash2 /></button>
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
-    </div>
-  );
-};
 
-export default Inventory;
+      <AddProductModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
+    </div>
+  )
+}
+
+export default Inventory

@@ -32,29 +32,24 @@
   background-color: var(--primary);
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.75rem 1.5rem;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
   font-family: 'Kulim Park';
 }
 
-.addBtn:hover {
-  background-color: var(--primary-hover);
-}
-
-/* Controls */
 .tableControls {
   display: flex;
-  gap: 1rem;
+  justify-content: flex-start;
 }
 
 .searchBox {
-  flex: 1;
+  width: 100%;
+  max-width: 400px;
   display: flex;
   align-items: center;
   background: white;
@@ -72,17 +67,11 @@
   font-family: 'Kulim Park';
 }
 
-.searchBox input::placeholder {
-  color: var(--gray-400);
-  font-family: 'Kulim Park';
-}
-
 .tableWrapper {
   background: white;
   border-radius: var(--radius-md);
   border: 1px solid var(--gray-200);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
 }
 
 .table {
@@ -108,18 +97,24 @@
   font-family: 'Kulim Park';
 }
 
-.sku {
-  color: var(--gray-500);
-  font-family: monospace;
-}
-
 .itemName {
   font-weight: 600;
   color: var(--gray-800);
 }
 
-.price {
+.oldPrice {
+  color: var(--gray-400);
+  text-decoration: line-through;
+  font-size: 0.85rem;
+}
+
+.discountText {
+  color: #ef4444;
   font-weight: 600;
+}
+
+.price {
+  font-weight: 700;
   color: var(--primary);
 }
 
@@ -151,12 +146,9 @@
   border: none;
   cursor: pointer;
   padding: 5px;
-  border-radius: 4px;
-  transition: background 0.2s;
+  color: var(--gray-400);
 }
 
-.editBtn { color: var(--gray-500); }
-.editBtn:hover { background: var(--gray-100); color: var(--gray-800); }
-
-.deleteBtn { color: #f87171; }
-.deleteBtn:hover { background: #fef2f2; color: #dc2626; }
+.deleteBtn {
+  color: #f87171;
+}
