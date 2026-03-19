@@ -12,12 +12,12 @@ export function middleware(request) {
   }
 
   if (pathname === '/login' && isAuthenticated) {
-    return NextResponse.redirect(new URL('/admin/dashboard', request.url));
+    return NextResponse.redirect(new URL('/admin', request.url));
   }
 
   if (pathname === '/') {
     return NextResponse.redirect(
-      new URL(isAuthenticated ? '/admin/dashboard' : '/login', request.url)
+      new URL(isAuthenticated ? '/admin' : '/login', request.url)
     );
   }
 

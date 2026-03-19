@@ -1,0 +1,162 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.titleArea h1 {
+  font-family: 'Unbounded';
+  font-size: 1.5rem;
+  color: var(--gray-900);
+}
+
+.titleArea p {
+  color: var(--gray-500);
+  font-family: 'Kulim Park';
+  font-size: 0.9rem;
+}
+
+.addBtn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Kulim Park';
+}
+
+.addBtn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Controls */
+.tableControls {
+  display: flex;
+  gap: 1rem;
+}
+
+.searchBox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-200);
+  gap: 0.75rem;
+  color: var(--gray-400);
+}
+
+.searchBox input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: 'Kulim Park';
+}
+
+.searchBox input::placeholder {
+  color: var(--gray-400);
+  font-family: 'Kulim Park';
+}
+
+.tableWrapper {
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  background: var(--gray-50);
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--gray-200);
+  font-family: 'Kulim Park';
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-50);
+  font-size: 0.95rem;
+  font-family: 'Kulim Park';
+}
+
+.sku {
+  color: var(--gray-500);
+  font-family: monospace;
+}
+
+.itemName {
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.price {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.statusStock {
+  background: var(--primary-light);
+  color: var(--primary-hover);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.statusSold {
+  background: var(--gray-100);
+  color: var(--gray-500);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editBtn, .deleteBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.editBtn { color: var(--gray-500); }
+.editBtn:hover { background: var(--gray-100); color: var(--gray-800); }
+
+.deleteBtn { color: #f87171; }
+.deleteBtn:hover { background: #fef2f2; color: #dc2626; }
