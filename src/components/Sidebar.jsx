@@ -18,27 +18,22 @@ function Sidebar({ activeView, onNavigate, isCollapsed, toggleSidebar }) {
   ];
 
   return (
-    <aside 
-      className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}
-      onClick={toggleSidebar} 
-    >
+    <aside className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}>
       <div className={styles.menuList}>
         {menuItems.map((item) => (
-          <div 
-            key={item.id} 
+          <div
+            key={item.id}
             className={`${styles.menuItem} ${activeView === item.id ? styles.active : ''}`}
-            onClick={(e) => {
-              e.stopPropagation(); 
-              onNavigate(item.id);
-            }}
+            onClick={() => onNavigate(item.id)}
           >
             <span className={styles.icon}>{item.icon}</span>
             {!isCollapsed && <span className={styles.label}>{item.label}</span>}
           </div>
         ))}
       </div>
-      
-      <button className={styles.toggleBtn}>
+
+      {/* Toggle button is the ONLY thing that collapses/expands */}
+      <button className={styles.toggleBtn} onClick={toggleSidebar}>
         {isCollapsed ? <FiChevronRight /> : <FiChevronLeft />}
       </button>
     </aside>

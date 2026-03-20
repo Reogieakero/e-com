@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js'
-import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
 
 function createAdminClient() {
@@ -29,6 +28,8 @@ export async function POST(request) {
 
   try {
     const formData = await request.formData()
+
+    // Upload images
     const files = formData.getAll('images')
     const imageUrls = []
 
@@ -38,10 +39,7 @@ export async function POST(request) {
 
         const { error: uploadError } = await supabase.storage
           .from('product-image')
-          .upload(fileName, file, {
-            contentType: file.type,
-            upsert: false,
-          })
+          .upload(fileName, file, { contentType: file.type, upsert: false })
 
         if (uploadError) {
           console.error('Upload Error:', uploadError.message)
@@ -56,14 +54,20 @@ export async function POST(request) {
       }
     }
 
+    // Collect bullet description points
+    const description = formData.getAll('description[]').filter(d => d.trim() !== '')
+
+    const stock = parseInt(formData.get('stock')) || 0
+
     const productData = {
       name: formData.get('name'),
       category: formData.get('category') || 'General',
       price: parseFloat(formData.get('price')) || 0,
       discount: parseFloat(formData.get('discount')) || 0,
-      stock: parseInt(formData.get('stock')) || 0,
+      stock,
       images: imageUrls,
-      status: parseInt(formData.get('stock')) > 0 ? 'In Stock' : 'Sold Out',
+      description,
+      status: stock > 0 ? 'In Stock' : 'Sold Out',
     }
 
     const { error: dbError } = await supabase.from('products').insert([productData])
