@@ -41,9 +41,7 @@ export default function LoginPage() {
 
   return (
     <div className={styles.container}>
-      {/* ── Left branding panel ── */}
       <div className={styles.left}>
-        {/* Icon */}
         <div className={styles.brandIcon}>
           <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
             <rect width="56" height="56" rx="14" fill="rgba(255,255,255,0.15)" />
@@ -80,7 +78,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* ── Right form panel ── */}
       <div className={styles.right}>
         <div className={styles.formWrapper}>
           <div className={styles.formHeader}>
