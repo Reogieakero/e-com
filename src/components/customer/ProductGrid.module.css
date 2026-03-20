@@ -1,0 +1,388 @@
+/* ── Section wrapper ── */
+.section {
+  background: #ffffff;
+  padding: 6rem 0 5rem;
+}
+
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* ── Section Header ── */
+.sectionHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.sectionEyebrow {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f97316;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.sectionDesc {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statNum {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1;
+}
+
+.statOrange { color: #f97316; }
+
+.statLabel {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.72rem;
+  color: #9ca3af;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.statDivider {
+  width: 1px;
+  height: 32px;
+  background: #e5e7eb;
+}
+
+/* ── Filter bar ── */
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.filterBtn {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #6b7280;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 100px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.filterBtn:hover { color: #f97316; border-color: #fed7aa; background: #fff7ed; }
+
+.filterActive {
+  background: #f97316 !important;
+  color: white !important;
+  border-color: #f97316 !important;
+}
+
+.filterCount {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: rgba(255,255,255,0.25);
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+.filterActive .filterCount { background: rgba(255,255,255,0.3); color: white; }
+.filterBtn:not(.filterActive) .filterCount { background: #e5e7eb; color: #6b7280; }
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Card ── */
+.card {
+  display: block;
+  text-decoration: none;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #f3f4f6;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
+  animation: cardIn 0.4s ease both;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.1);
+  border-color: #e5e7eb;
+}
+.cardSoldOut { opacity: 0.72; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card image */
+.cardImg {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #f9fafb;
+}
+
+.img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+.card:hover .img { transform: scale(1.06); }
+
+.imgPlaceholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: #d1d5db;
+  background: #f9fafb;
+}
+
+/* Badges */
+.badges {
+  position: absolute;
+  top: 10px; left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 2;
+}
+
+.badgeSale {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: #f97316;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 0 4px 4px 0;
+  margin-left: -10px;
+  letter-spacing: 0.03em;
+}
+
+.badgeLow {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #fef3c7;
+  color: #d97706;
+  padding: 3px 8px;
+  border-radius: 0 4px 4px 0;
+  margin-left: -10px;
+  letter-spacing: 0.02em;
+}
+
+/* Sold out overlay */
+.soldOutOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(1px);
+  z-index: 2;
+}
+.soldOutOverlay span {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b7280;
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+/* Hover actions */
+.cardActions {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+  z-index: 3;
+  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+}
+.card:hover .cardActions { transform: translateY(0); }
+
+.wishBtn {
+  width: 36px; height: 36px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #6b7280;
+  flex-shrink: 0;
+  transition: transform 0.15s, color 0.15s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.wishBtn:hover { transform: scale(1.1); }
+.wished { color: #f97316 !important; }
+
+.bagBtn {
+  flex: 1;
+  background: #f97316;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 0.55rem 1rem;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.2s;
+}
+.bagBtn:hover { background: #ea580c; }
+
+/* Card info */
+.cardInfo {
+  padding: 1rem 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cardCategory {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.cardName {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 2px 0;
+}
+
+.cardDesc {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.cardPriceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.cardPrice {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cardOldPrice {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.75rem;
+  color: #d1d5db;
+  text-decoration: line-through;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 5rem 1rem;
+  color: #d1d5db;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+.empty p {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6b7280;
+  margin: 0;
+}
+.empty span {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sectionHeader { grid-template-columns: 1fr; gap: 1.5rem; }
+  .inner { padding: 0 1.25rem; }
+  .section { padding: 4rem 0 3rem; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+}

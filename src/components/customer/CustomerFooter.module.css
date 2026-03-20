@@ -1,0 +1,201 @@
+.footer {
+  background: #111827;
+  color: white;
+}
+
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem 2rem;
+}
+
+/* Top row */
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.brandIcon {
+  font-size: 0.75rem;
+  color: #f97316;
+}
+
+.brandName {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.02em;
+}
+
+.brandSub {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: #f97316;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-left: 3px;
+}
+
+.tagline {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.875rem;
+  color: #6b7280;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.socials {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.socialBtn {
+  width: 38px; height: 38px;
+  background: #1f2937;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.socialBtn:hover { background: #f97316; color: white; }
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: #1f2937;
+  margin: 2rem 0;
+}
+
+/* Links row */
+.linksRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.6fr;
+  gap: 2.5rem;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.linkTitle {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.link {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.link:hover { color: #f97316; }
+
+/* Newsletter */
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.newsletterDesc {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.82rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+.emailRow {
+  display: flex;
+  gap: 0;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.emailInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.65rem 1rem;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.85rem;
+  color: white;
+}
+.emailInput::placeholder { color: #4b5563; }
+
+.emailBtn {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 0.65rem 1.1rem;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.emailBtn:hover { background: #ea580c; }
+
+/* Bottom row */
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.copy {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.78rem;
+  color: #4b5563;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.bottomLink {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.78rem;
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.bottomLink:hover { color: #9ca3af; }
+
+@media (max-width: 900px) {
+  .linksRow { grid-template-columns: 1fr 1fr; }
+  .inner { padding: 3rem 1.25rem 1.5rem; }
+}
+
+@media (max-width: 560px) {
+  .linksRow { grid-template-columns: 1fr; }
+  .topRow { flex-direction: column; align-items: flex-start; }
+}

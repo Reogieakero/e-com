@@ -5,6 +5,7 @@ export function middleware(request) {
   const isAuthenticated = session?.value === 'authenticated';
   const { pathname } = request.nextUrl;
 
+  // Protect /admin — redirect to login if not authenticated
   if (pathname.startsWith('/admin')) {
     if (!isAuthenticated) {
       return NextResponse.redirect(new URL('/login', request.url));
@@ -13,12 +14,6 @@ export function middleware(request) {
 
   if (pathname === '/login' && isAuthenticated) {
     return NextResponse.redirect(new URL('/admin', request.url));
-  }
-
-  if (pathname === '/') {
-    return NextResponse.redirect(
-      new URL(isAuthenticated ? '/admin' : '/login', request.url)
-    );
   }
 
   return NextResponse.next();

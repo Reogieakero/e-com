@@ -1,7 +1,7 @@
 'use client'
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useRef, useEffect } from 'react'
 import styles from './AddProductModal.module.css'
-import { FiX, FiUploadCloud, FiPlus, FiTrash2 } from 'react-icons/fi'
+import { FiX, FiUploadCloud, FiPlus, FiTrash2, FiCheck, FiChevronDown } from 'react-icons/fi'
 
 const AddProductModal = ({ isOpen, onClose }) => {
   const [selectedImages, setSelectedImages] = useState([])
@@ -10,6 +10,9 @@ const AddProductModal = ({ isOpen, onClose }) => {
   const [bullets, setBullets] = useState([''])
   const [price, setPrice] = useState('')
   const [discountPct, setDiscountPct] = useState('')
+  const [category, setCategory] = useState('')
+  const [categoryOpen, setCategoryOpen] = useState(false)
+  const categoryRef = useRef(null)
 
   // Live discount calculations
   const priceNum = parseFloat(price) || 0
@@ -17,6 +20,16 @@ const AddProductModal = ({ isOpen, onClose }) => {
   const discountAmount = useMemo(() => (priceNum * discountPctNum) / 100, [priceNum, discountPctNum])
   const finalPrice = useMemo(() => priceNum - discountAmount, [priceNum, discountAmount])
   const hasDiscount = priceNum > 0 && discountPctNum > 0
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (categoryRef.current && !categoryRef.current.contains(e.target)) {
+        setCategoryOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   if (!isOpen) return null
 
@@ -78,6 +91,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
       setBullets([''])
       setPrice('')
       setDiscountPct('')
+      setCategory('')
       onClose(true)
     } catch (err) {
       setError('Network error. Please try again.')
@@ -112,10 +126,37 @@ const AddProductModal = ({ isOpen, onClose }) => {
             <input name="name" placeholder="Enter product name" required />
           </div>
 
-          {/* Category */}
+          {/* Category — custom dropdown */}
           <div className={styles.formGroup}>
             <label>Category</label>
-            <input name="category" placeholder="e.g. Tops, Pants, Dresses" />
+            {/* Hidden input carries the value for form submission */}
+            <input type="hidden" name="category" value={category} />
+            <div className={styles.customSelect} ref={categoryRef}>
+              <button
+                type="button"
+                className={`${styles.customSelectTrigger} ${categoryOpen ? styles.customSelectOpen : ''} ${category ? styles.customSelectFilled : ''}`}
+                onClick={() => setCategoryOpen(o => !o)}
+              >
+                <span>{category || 'Select a category'}</span>
+                <FiChevronDown size={14} className={`${styles.customSelectChevron} ${categoryOpen ? styles.chevronUp : ''}`} />
+              </button>
+
+              {categoryOpen && (
+                <div className={styles.customSelectDropdown}>
+                  {['Tops', 'Bottoms', 'Dresses', 'Outerwear', 'General'].map(opt => (
+                    <button
+                      key={opt}
+                      type="button"
+                      className={`${styles.customSelectOption} ${category === opt ? styles.customSelectOptionActive : ''}`}
+                      onClick={() => { setCategory(opt); setCategoryOpen(false) }}
+                    >
+                      <span>{opt}</span>
+                      {category === opt && <FiCheck size={13} />}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Price / Discount % / Stock */}

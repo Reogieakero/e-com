@@ -393,3 +393,96 @@
   font-weight: 700;
   color: #e24b4a;
 }
+/* ── Custom Dropdown Select ── */
+.customSelect {
+  position: relative;
+  width: 100%;
+}
+
+.customSelectTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1.5px solid var(--gray-200);
+  border-radius: 0;
+  background: transparent;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.95rem;
+  color: var(--gray-300);
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+
+  background-image: linear-gradient(to right, var(--primary) 0%, var(--primary) 100%);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 0.35s ease, border-color 0.2s;
+}
+
+.customSelectFilled {
+  color: var(--gray-800) !important;
+}
+
+.customSelectOpen {
+  border-bottom-color: transparent !important;
+  background-size: 100% 2px !important;
+  color: var(--gray-800);
+}
+
+.customSelectChevron {
+  color: var(--gray-400);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, color 0.2s;
+}
+
+.chevronUp {
+  transform: rotate(180deg);
+  color: var(--primary) !important;
+}
+
+.customSelectDropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0; right: 0;
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  z-index: 50;
+  overflow: hidden;
+  animation: dropIn 0.18s ease;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.customSelectOption {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  border: none;
+  background: transparent;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+  border-bottom: 1px solid var(--gray-50);
+}
+.customSelectOption:last-child { border-bottom: none; }
+.customSelectOption:hover { background: var(--primary-light); color: var(--primary); }
+
+.customSelectOptionActive {
+  background: var(--primary-light) !important;
+  color: var(--primary) !important;
+  font-weight: 700;
+}
