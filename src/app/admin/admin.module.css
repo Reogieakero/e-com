@@ -5,71 +5,29 @@
   background-color: var(--gray-50);
 }
 
-/* This is the new container that holds the Sidebar and Main content */
 .layoutBody {
   display: flex;
-  flex: 1; /* Makes the body fill the remaining height below the Navbar */
-  overflow: hidden; /* Optional: prevents the whole page from scrolling if you want individual scrollbars */
+  flex: 1;
+  padding-top: var(--navbar-height);
 }
 
+/* Main content offset from fixed sidebar */
 .adminMain {
-  flex: 1; /* Main content takes up all space not occupied by the Sidebar */
+  flex: 1;
   padding: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  overflow-y: auto; /* Allows the dashboard content to scroll while Navbar/Sidebar stay fixed */
+  margin-left: var(--sidebar-width);
+  min-height: calc(100vh - var(--navbar-height));
+  transition: margin-left 0.3s ease;
 }
 
-.welcomeSection {
-  margin-bottom: 2.5rem;
-}
-
-.title {
-  font-family: var(--font-title);
-  font-size: 1.75rem;
-  color: var(--gray-900);
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  color: var(--gray-500);
-  font-family: var(--font-body);
-}
-
-/* Overview Cards */
-.overviewGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.statCard {
-  background: var(--background);
-  padding: 2rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--gray-200);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.label {
-  font-size: 0.85rem;
-  color: var(--gray-500);
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-.value {
-  font-family: var(--font-title);
-  font-size: 2rem;
-  color: var(--primary);
+/* When sidebar is collapsed */
+.adminMain.collapsed {
+  margin-left: 72px;
 }
 
 @media (max-width: 768px) {
   .adminMain {
     padding: 1rem;
+    margin-left: 0;
   }
 }

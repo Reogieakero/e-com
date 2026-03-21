@@ -1,134 +1,326 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  animation: fadeIn 0.4s ease-out;
+  gap: 1.5rem;
+  animation: fadeIn 0.35s ease-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Stats Cards */
+/* ── Loading ── */
+.loadingWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+}
+.dots { display: flex; gap: 7px; }
+.dots span {
+  width: 8px; height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: bounce 0.7s infinite alternate;
+  opacity: 0.5;
+}
+.dots span:nth-child(2) { animation-delay: 0.15s; }
+.dots span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes bounce {
+  from { transform: translateY(0); opacity: 0.4; }
+  to   { transform: translateY(-8px); opacity: 1; }
+}
+
+/* ── Greeting ── */
+.greeting { margin-bottom: 0.25rem; }
+.greetTitle {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  letter-spacing: -0.02em;
+}
+.greetSub {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  margin-top: 0.25rem;
+}
+
+/* ── Stat Cards ── */
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 
 .statCard {
   background: var(--background);
-  padding: 1.5rem;
-  border-radius: var(--radius-md);
   border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.statCard:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.07); transform: translateY(-2px); }
+
+.statAccentBar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  opacity: 0.7;
+}
+
+.statTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.statIconWrap {
+  width: 38px; height: 38px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.trendBadge {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  box-shadow: var(--shadow-sm);
+  gap: 2px;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 20px;
+}
+.trendUp   { background: #dcfce7; color: #16a34a; }
+.trendDown { background: #fee2e2; color: #dc2626; }
+
+.statBottom { display: flex; flex-direction: column; gap: 3px; }
+
+.statLabel {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin: 0;
 }
 
-.statIcon {
-  font-size: 2rem;
-  background: var(--gray-50);
-  padding: 12px;
-  border-radius: var(--radius-sm);
-  display: flex;
-}
-
-.label {
-  font-size: 0.875rem;
-  color: var(--gray-500);
-  margin-bottom: 0.25rem;
-  font-family: 'Kulim Park';
-}
-
-.value {
-  font-family: 'Unbounded';
-  font-size: 1.5rem;
+.statValue {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
   color: var(--gray-900);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
 }
 
-/* Main Content Grid */
-.contentLayout {
+.statSub {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin: 0;
+}
+
+/* ── Chart Cards ── */
+.row2 {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1rem;
 }
 
-.card {
+.chartCard {
   background: var(--background);
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
   border: 1px solid var(--gray-200);
-  box-shadow: var(--shadow-md);
-  font-family: 'Kulim Park';
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem 1rem;
 }
 
-.cardTitle {
-  font-family: 'Unbounded';
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+.sectionHeader {
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
   color: var(--gray-800);
+  letter-spacing: -0.01em;
+  margin: 0 0 3px;
 }
 
-/* Table Styles */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'Kulim Park';
+.sectionSub {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin: 0;
 }
 
-.table th {
-  text-align: left;
-  padding: 0.75rem;
-  border-bottom: 2px solid var(--gray-100);
-  color: var(--gray-500);
+.noData {
+  font-family: 'Kulim Park', sans-serif;
   font-size: 0.85rem;
+  color: var(--gray-400);
+  font-style: italic;
+  padding: 2rem 0;
+  text-align: center;
 }
 
-.table td {
-  padding: 1rem 0.75rem;
-  border-bottom: 1px solid var(--gray-100);
-  font-size: 0.95rem;
+/* ── Custom Tooltip ── */
+.tooltip {
+  background: var(--gray-900);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  min-width: 120px;
 }
 
-.badgeSuccess {
-  background: var(--primary-light);
-  color: var(--primary-hover);
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+.tooltipLabel {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin: 0 0 5px;
 }
 
-.badgePending {
-  background: var(--gray-100);
-  color: var(--gray-600);
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0;
 }
 
-/* Inventory Alerts */
-.alertItem {
+.tooltipDot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tooltipName {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.78rem;
+  color: var(--gray-400);
+}
+
+.tooltipVal {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: white;
+  margin-left: auto;
+}
+
+/* ── Recent Orders ── */
+.recentList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.recentRow {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 0;
+  padding: 0.7rem 0;
   border-bottom: 1px solid var(--gray-50);
+  transition: background 0.15s;
+}
+.recentRow:last-child { border-bottom: none; }
+.recentRow:hover { background: var(--gray-50); margin: 0 -0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; border-radius: 6px; }
+
+.recentImg {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--gray-100);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray-400);
+  flex-shrink: 0;
+}
+.recentImg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.recentInfo { flex: 1; min-width: 0; }
+
+.recentProduct {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary);
+.recentCustomer {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.72rem;
+  color: var(--gray-400);
+  margin: 2px 0 0;
 }
 
-@media (max-width: 1024px) {
-  .contentLayout {
-    grid-template-columns: 1fr;
-  }
+.recentRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
 }
+
+.recentPrice {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.recentDate {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.68rem;
+  color: var(--gray-400);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .statsGrid { grid-template-columns: 1fr 1fr; }
+  .row2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .statsGrid { grid-template-columns: 1fr; }
+}
+
+/* ── Dark mode overrides ── */
+[data-theme="dark"] .statCard,
+[data-theme="dark"] .chartCard {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+}
+
+[data-theme="dark"] .recentRow:hover {
+  background: var(--gray-200);
+}
+
+[data-theme="dark"] .recentImg {
+  background: var(--gray-200);
+}
+
+/* Force tooltip always dark */
+.tooltip { background: #111827 !important; border: 1px solid #374151; }
+.tooltipLabel { color: #9ca3af !important; }
+.tooltipName  { color: #9ca3af !important; }
+.tooltipVal   { color: #ffffff !important; }

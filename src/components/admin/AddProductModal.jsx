@@ -143,7 +143,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
 
               {categoryOpen && (
                 <div className={styles.customSelectDropdown}>
-                  {['Tops', 'Bottoms', 'Dresses', 'Outerwear', 'General'].map(opt => (
+                  {['New Arrivals', 'Sale', 'Tops', 'Bottoms', 'Dresses', 'Outerwear', 'General'].map(opt => (
                     <button
                       key={opt}
                       type="button"

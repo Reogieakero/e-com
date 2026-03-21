@@ -89,10 +89,15 @@
 /* ── Filter bar ── */
 .filterBar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   margin-bottom: 2.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
 }
+.filterBar::-webkit-scrollbar { display: none; }
 
 .filterBtn {
   font-family: 'Kulim Park', sans-serif;
@@ -109,6 +114,8 @@
   gap: 6px;
   transition: all 0.2s;
   letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .filterBtn:hover { color: #f97316; border-color: #fed7aa; background: #fff7ed; }
 
@@ -239,56 +246,6 @@
   padding: 6px 14px;
   border-radius: 4px;
 }
-
-/* Hover actions */
-.cardActions {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transform: translateY(100%);
-  transition: transform 0.25s ease;
-  z-index: 3;
-  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-}
-.card:hover .cardActions { transform: translateY(0); }
-
-.wishBtn {
-  width: 36px; height: 36px;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  color: #6b7280;
-  flex-shrink: 0;
-  transition: transform 0.15s, color 0.15s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
-.wishBtn:hover { transform: scale(1.1); }
-.wished { color: #f97316 !important; }
-
-.bagBtn {
-  flex: 1;
-  background: #f97316;
-  color: white;
-  border: none;
-  border-radius: 100px;
-  padding: 0.55rem 1rem;
-  font-family: 'Kulim Park', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  transition: background 0.2s;
-}
-.bagBtn:hover { background: #ea580c; }
 
 /* Card info */
 .cardInfo {

@@ -2,44 +2,44 @@
   width: var(--sidebar-width);
   background: var(--background);
   border-right: 1px solid var(--gray-200);
-  min-height: calc(100vh - var(--navbar-height));
-  height: fit-content;
-  position: sticky;
+  height: calc(100vh - var(--navbar-height));
+  position: fixed;
   top: var(--navbar-height);
+  left: 0;
   transition: width 0.3s ease;
-  padding: 0.75rem 0;
+  padding: 0.75rem 0 0;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  z-index: 50;
+  overflow-y: auto;
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+.sidebar::-webkit-scrollbar { width: 0; }
+
+/* Invisible full-area click layer behind menu items */
+.sidebarBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  cursor: pointer;
 }
 
 .collapsed {
-  width: 80px;
+  width: 72px;
 }
 
-.toggleBtn {
-  position: absolute;
-  right: -12px;
-  top: 20px;
-  width: 24px;
-  height: 24px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  z-index: 10;
-}
-
+/* Menu items take up remaining space */
 .menuList {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
   padding: 0 0.75rem;
+  position: relative;
+  z-index: 1;
 }
 
 .menuItem {
@@ -53,6 +53,7 @@
   transition: all 0.2s ease;
   white-space: nowrap;
   user-select: none;
+  position: relative;
 }
 
 .menuItem:hover {
@@ -67,17 +68,82 @@
 }
 
 .icon {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
 .label {
-  font-family: 'Kulim Park';
+  font-family: 'Kulim Park', sans-serif;
   font-size: 0.9rem;
+  flex: 1;
+  overflow: hidden;
 }
 
+/* Badge */
+.badge {
+  background: var(--primary);
+  color: white;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  line-height: 1.4;
+  margin-left: auto;
+  flex-shrink: 0;
+  animation: badgePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.badgeCollapsed {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 2px 4px;
+  font-size: 0.5rem;
+  min-width: 14px;
+  text-align: center;
+}
+
+@keyframes badgePop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ── Toggle button at bottom ── */
+.toggleWrap {
+  border-top: 1px solid var(--gray-100);
+  padding: 0.6rem 0.75rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.toggleBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.9rem;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--gray-400);
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.toggleBtn:hover {
+  background: var(--gray-100);
+  color: var(--gray-700);
+}
+
+/* Collapsed state adjustments */
 .collapsed .menuList {
   padding: 0 0.5rem;
 }
@@ -85,4 +151,14 @@
 .collapsed .menuItem {
   justify-content: center;
   padding: 0.65rem 0;
+  gap: 0;
+}
+
+.collapsed .toggleWrap {
+  padding: 0.6rem 0.5rem;
+}
+
+.collapsed .toggleBtn {
+  justify-content: center;
+  padding: 0.6rem 0;
 }

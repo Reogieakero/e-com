@@ -1,0 +1,78 @@
+.page { min-height: 100vh; background: #ffffff; }
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding-top: 72px;
+  height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.75) 0%,
+    rgba(0,0,0,0.45) 55%,
+    rgba(0,0,0,0.15) 100%
+  );
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eyebrow {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f97316;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.heroSub {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 440px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .hero { height: 340px; }
+  .heroInner { padding: 0 1.25rem 2rem; }
+  .heroTitle { font-size: 2.2rem; }
+}

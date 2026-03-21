@@ -1,0 +1,344 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.titleArea h1 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.5rem;
+  color: var(--gray-900);
+}
+
+.titleArea p {
+  font-family: 'Kulim Park', sans-serif;
+  color: var(--gray-500);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.refreshBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--background);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1rem;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.refreshBtn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+.refreshBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.spinning { animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Controls row ── */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ── Stat card ── */
+.statCard {
+  background: var(--background);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+
+.statIconWrap {
+  width: 36px; height: 36px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.statNum {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  display: block;
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: block;
+  margin-top: 3px;
+}
+
+/* ── Search ── */
+.searchBox {
+  flex: 1;
+  max-width: 380px;
+  display: flex;
+  align-items: center;
+  background: var(--background);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-200);
+  gap: 0.6rem;
+  color: var(--gray-400);
+  transition: border-color 0.2s;
+}
+.searchBox:focus-within { border-color: var(--primary); color: var(--primary); }
+.searchBox input {
+  border: none; outline: none; width: 100%;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.875rem;
+  color: var(--gray-700);
+  background: transparent;
+}
+
+/* ── Table ── */
+.tableWrapper {
+  background: var(--background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+}
+
+.table { width: 100%; border-collapse: collapse; }
+
+.table th {
+  text-align: left;
+  background: var(--gray-50);
+  padding: 0.85rem 1rem;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--gray-50);
+  vertical-align: middle;
+}
+
+.row {
+  animation: rowIn 0.25s ease both;
+  transition: background 0.15s;
+}
+.row:hover { background: var(--gray-50); }
+.row:last-child td { border-bottom: none; }
+
+@keyframes rowIn {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Cells */
+.rowNum {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gray-300);
+}
+
+.customerCell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 38px; height: 38px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.customerName {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.phoneCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.countCell {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  font-weight: 600;
+}
+
+.orderBadge {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(22,163,74,0.15);
+  color: #16a34a;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.noOrders {
+  color: var(--gray-300);
+  font-size: 0.85rem;
+}
+
+.dateText {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.8rem;
+  color: var(--gray-400);
+}
+
+/* ── Empty / Loader ── */
+.loaderWrap {
+  padding: 3.5rem;
+  display: flex;
+  justify-content: center;
+}
+.dots { display: flex; gap: 6px; }
+.dots span {
+  width: 7px; height: 7px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: bounce 0.7s infinite alternate;
+  opacity: 0.5;
+}
+.dots span:nth-child(2) { animation-delay: 0.15s; }
+.dots span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes bounce {
+  from { transform: translateY(0); opacity: 0.4; }
+  to   { transform: translateY(-7px); opacity: 1; }
+}
+
+.empty {
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--gray-300);
+}
+.empty p {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gray-500);
+  margin: 0;
+}
+.empty span {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.82rem;
+  color: var(--gray-400);
+}
+
+/* ── Dark mode overrides ── */
+[data-theme="dark"] .statCard,
+[data-theme="dark"] .tableWrapper {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+}
+
+[data-theme="dark"] .table th {
+  background: var(--gray-200);
+}
+
+/* ── Dark mode text visibility fixes ── */
+[data-theme="dark"] .customerName,
+[data-theme="dark"] .statNum {
+  color: var(--gray-900);
+}
+
+[data-theme="dark"] .phoneCell,
+[data-theme="dark"] .dateText,
+[data-theme="dark"] .countCell,
+[data-theme="dark"] .rowNum,
+[data-theme="dark"] .statLabel,
+[data-theme="dark"] .titleArea p {
+  color: var(--gray-500);
+}
+
+[data-theme="dark"] .titleArea h1 {
+  color: var(--gray-900);
+}
+
+[data-theme="dark"] .searchBox {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+}
+
+[data-theme="dark"] .searchBox input {
+  color: var(--gray-900);
+}
+
+[data-theme="dark"] .refreshBtn {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+  color: var(--gray-600);
+}
+
+[data-theme="dark"] .table td {
+  color: var(--gray-700);
+  border-bottom-color: var(--gray-200);
+}
+
+[data-theme="dark"] .row:hover {
+  background: var(--gray-200);
+}
+
+[data-theme="dark"] .avatar {
+  background: rgba(249, 115, 22, 0.2);
+}
+
+[data-theme="dark"] .noOrders {
+  color: var(--gray-400);
+}

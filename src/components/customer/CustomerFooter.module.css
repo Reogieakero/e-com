@@ -6,7 +6,7 @@
 .inner {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 4rem 2.5rem 2rem;
+  padding: 3rem 2.5rem 2rem;
 }
 
 /* Top row */
@@ -16,7 +16,6 @@
   justify-content: space-between;
   gap: 2rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
 }
 
 .brand {
@@ -79,88 +78,6 @@
   margin: 2rem 0;
 }
 
-/* Links row */
-.linksRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1.6fr;
-  gap: 2.5rem;
-}
-
-.linkGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.linkTitle {
-  font-family: 'Kulim Park', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.25rem;
-}
-
-.link {
-  font-family: 'Kulim Park', sans-serif;
-  font-size: 0.875rem;
-  color: #6b7280;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.link:hover { color: #f97316; }
-
-/* Newsletter */
-.newsletter {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.newsletterDesc {
-  font-family: 'Kulim Park', sans-serif;
-  font-size: 0.82rem;
-  color: #6b7280;
-  line-height: 1.5;
-  margin-bottom: 0.25rem;
-}
-
-.emailRow {
-  display: flex;
-  gap: 0;
-  border: 1px solid #374151;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.emailInput {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  padding: 0.65rem 1rem;
-  font-family: 'Kulim Park', sans-serif;
-  font-size: 0.85rem;
-  color: white;
-}
-.emailInput::placeholder { color: #4b5563; }
-
-.emailBtn {
-  background: #f97316;
-  color: white;
-  border: none;
-  padding: 0.65rem 1.1rem;
-  font-family: 'Kulim Park', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.04em;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.emailBtn:hover { background: #ea580c; }
-
 /* Bottom row */
 .bottomRow {
   display: flex;
@@ -190,12 +107,7 @@
 }
 .bottomLink:hover { color: #9ca3af; }
 
-@media (max-width: 900px) {
-  .linksRow { grid-template-columns: 1fr 1fr; }
-  .inner { padding: 3rem 1.25rem 1.5rem; }
-}
-
-@media (max-width: 560px) {
-  .linksRow { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+  .inner { padding: 2rem 1.25rem 1.5rem; }
   .topRow { flex-direction: column; align-items: flex-start; }
 }

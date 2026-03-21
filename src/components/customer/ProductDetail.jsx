@@ -3,13 +3,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import styles from './ProductDetail.module.css'
 import {
-  FiArrowLeft, FiHeart, FiShare2, FiCheck,
+  FiArrowLeft, FiCheck,
   FiPackage, FiUser, FiPhone, FiMessageSquare, FiChevronRight
 } from 'react-icons/fi'
 
 export default function ProductDetail({ product, related }) {
   const [activeImg, setActiveImg] = useState(0)
-  const [wished, setWished] = useState(false)
   const [form, setForm] = useState({ name: '', phone: '', message: '' })
   const [formState, setFormState] = useState('idle') // idle | submitting | success | error
   const [errors, setErrors] = useState({})
@@ -95,19 +94,6 @@ export default function ProductDetail({ product, related }) {
               {isSoldOut && (
                 <div className={styles.soldOutOverlay}><span>Sold Out</span></div>
               )}
-
-              {/* Floating actions */}
-              <div className={styles.floatingActions}>
-                <button
-                  className={`${styles.floatBtn} ${wished ? styles.floatBtnWished : ''}`}
-                  onClick={() => setWished(w => !w)}
-                >
-                  <FiHeart size={16} fill={wished ? '#f97316' : 'none'} />
-                </button>
-                <button className={styles.floatBtn} onClick={() => navigator.clipboard?.writeText(window.location.href)}>
-                  <FiShare2 size={16} />
-                </button>
-              </div>
 
               {/* Image dots */}
               {images.length > 1 && (

@@ -6,37 +6,51 @@
   padding: 0 2rem;
   background: var(--background);
   border-bottom: 1px solid var(--gray-200);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 99;
 }
 
-.leftSection, .rightSection {
+/* ── Brand — matches CustomerNavbar ── */
+.brand {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  align-items: baseline;
+  gap: 4px;
+  text-decoration: none;
 }
 
-.logoGroup {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.logoIcon {
-  width: 32px;
-  height: 32px;
-  background: var(--primary);
-  border-radius: var(--radius-sm);
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+.brandIcon {
+  font-size: 0.75rem;
+  color: var(--primary);
+  margin-right: 2px;
 }
 
 .brandName {
-  font-family: 'Unbounded';
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
   color: var(--gray-900);
   letter-spacing: -0.02em;
+}
+
+.brandSub {
+  font-family: 'Kulim Park', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-left: 2px;
+  align-self: center;
+}
+
+/* ── Right section ── */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .searchBar {
@@ -51,14 +65,12 @@
 }
 
 .searchBar:focus-within {
-  background: white;
+  background: var(--background);
   border-color: var(--primary-mid);
   box-shadow: 0 0 0 3px var(--primary-light);
 }
 
-.searchIcon {
-  color: var(--gray-400);
-}
+.searchIcon { color: var(--gray-400); }
 
 .searchBar input {
   background: transparent;
@@ -67,43 +79,45 @@
   font-size: 0.9rem;
   width: 200px;
   color: var(--gray-800);
-  font-family: 'Kulim Park';
+  font-family: 'Kulim Park', sans-serif;
 }
 
 .searchBar input::placeholder {
   color: var(--gray-400);
-  font-family: 'Kulim Park';
+  font-family: 'Kulim Park', sans-serif;
 }
 
-
+/* ── Logout button ── */
 .logoutBtn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: 0.5rem 1.1rem;
+  border-radius: 100px;
   border: 1px solid var(--gray-200);
-  background: white;
-  color: var(--gray-700);
-  font-family: 'Kulim Park';
-  font-weight: 500;
-  font-size: 0.9rem;
+  background: var(--background);
+  color: var(--gray-600);
+  font-family: 'Kulim Park', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.logoutBtn:hover {
+.logoutBtn:hover:not(:disabled) {
   background: #fff1f2;
   border-color: #fecaca;
-  color: #dc2626; 
+  color: #dc2626;
+}
+
+.logoutBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
-  .brandName, .kbd, .logoutBtn span {
-    display: none;
-  }
-  
-  .searchBar input {
-    width: 100px;
-  }
+  .brandSub { display: none; }
+  .searchBar input { width: 100px; }
+  .logoutBtn span { display: none; }
+  .navbar { padding: 0 1.25rem; }
 }

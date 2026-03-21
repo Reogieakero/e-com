@@ -10,7 +10,6 @@ const slides = [
     eyebrow: 'New Arrivals',
     headline: 'Find Your\nSignature\nPiece.',
     sub: 'Curated pre-loved fashion — handpicked for quality and style.',
-    cta: 'Shop Now',
     align: 'left',
   },
   {
@@ -18,7 +17,6 @@ const slides = [
     eyebrow: 'Summer Edit',
     headline: 'Effortless\nStyle,\nEvery Day.',
     sub: 'Light fabrics, bold looks. Refresh your wardrobe this season.',
-    cta: 'Explore Collection',
     align: 'center',
   },
   {
@@ -26,7 +24,6 @@ const slides = [
     eyebrow: 'Trending Now',
     headline: 'Pre-Loved\nNever Looked\nThis Good.',
     sub: 'Sustainable fashion that tells a story. Shop consciously.',
-    cta: 'Browse Pieces',
     align: 'left',
   },
   {
@@ -34,7 +31,6 @@ const slides = [
     eyebrow: 'Up to 70% Off',
     headline: 'Sale\nSeason\nIs Here.',
     sub: 'Major markdowns on top picks. Limited pieces available.',
-    cta: 'Shop the Sale',
     align: 'right',
     sale: true,
   },
@@ -43,7 +39,6 @@ const slides = [
     eyebrow: 'The Essentials',
     headline: 'Build a\nWardrobe\nThat Lasts.',
     sub: 'Timeless pieces at accessible prices. Quality over quantity.',
-    cta: 'View Essentials',
     align: 'left',
   },
 ]
@@ -96,12 +91,7 @@ export default function HeroCarousel() {
               </span>
             ))}
           </h1>
-          <p className={styles.sub} style={{ animationDelay: '0.35s' }}>{slide.sub}</p>
-          <div className={styles.ctaRow} style={{ animationDelay: '0.5s' }}>
-            <Link href="#products" className={styles.ctaBtn}>{slide.cta}</Link>
-            <Link href="#products" className={styles.ctaGhost}>View All</Link>
-          </div>
-        </div>
+          <p className={styles.sub} style={{ animationDelay: '0.35s' }}>{slide.sub}</p>        </div>
       </div>
 
       {/* Arrows */}

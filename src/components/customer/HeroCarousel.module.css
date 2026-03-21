@@ -114,45 +114,7 @@
   animation: fadeUp 0.65s ease both;
 }
 
-.ctaRow {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  animation: fadeUp 0.65s ease both;
-  margin-top: 0.25rem;
-}
 
-.align_center .ctaRow { justify-content: center; }
-.align_right .ctaRow { justify-content: flex-end; }
-
-.ctaBtn {
-  font-family: 'Kulim Park', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: white;
-  background: #f97316;
-  padding: 0.85rem 2rem;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
-}
-.ctaBtn:hover { background: #ea580c; transform: translateY(-2px); }
-
-.ctaGhost {
-  font-family: 'Kulim Park', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.8);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.4);
-  padding-bottom: 2px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.ctaGhost:hover { color: white; border-color: white; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }

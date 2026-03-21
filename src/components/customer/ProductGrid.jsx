@@ -4,9 +4,9 @@ import Link from 'next/link'
 import styles from './ProductGrid.module.css'
 import { FiHeart, FiShoppingBag, FiPackage } from 'react-icons/fi'
 
-const categories = ['All', 'Tops', 'Bottoms', 'Dresses', 'Outerwear', 'General']
+const categories = ['All', 'New Arrivals', 'Sale', 'Tops', 'Bottoms', 'Dresses', 'Outerwear', 'General']
 
-export default function ProductGrid({ products = [] }) {
+export default function ProductGrid({ products = [], hideFilters = false }) {
   const [activeCategory, setActiveCategory] = useState('All')
   const [wishlist, setWishlist] = useState([])
 
@@ -56,7 +56,7 @@ export default function ProductGrid({ products = [] }) {
         </div>
 
         {/* Category filter */}
-        <div className={styles.filterBar}>
+        {!hideFilters && <div className={styles.filterBar}>
           {categories.map(cat => (
             <button
               key={cat}
@@ -71,7 +71,7 @@ export default function ProductGrid({ products = [] }) {
               )}
             </button>
           ))}
-        </div>
+        </div>}
 
         {/* Product grid */}
         {filtered.length === 0 ? (

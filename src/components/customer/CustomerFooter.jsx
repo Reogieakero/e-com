@@ -27,38 +27,6 @@ export default function CustomerFooter() {
 
         <div className={styles.divider} />
 
-        {/* Links */}
-        <div className={styles.linksRow}>
-          <div className={styles.linkGroup}>
-            <span className={styles.linkTitle}>Shop</span>
-            {['New Arrivals', 'Tops', 'Bottoms', 'Dresses', 'Outerwear', 'Sale'].map(l => (
-              <Link key={l} href="#products" className={styles.link}>{l}</Link>
-            ))}
-          </div>
-          <div className={styles.linkGroup}>
-            <span className={styles.linkTitle}>Help</span>
-            {['FAQs', 'Shipping Info', 'Returns', 'Size Guide', 'Contact Us'].map(l => (
-              <Link key={l} href="#" className={styles.link}>{l}</Link>
-            ))}
-          </div>
-          <div className={styles.linkGroup}>
-            <span className={styles.linkTitle}>About</span>
-            {['Our Story', 'Sustainability', 'Careers', 'Press'].map(l => (
-              <Link key={l} href="#" className={styles.link}>{l}</Link>
-            ))}
-          </div>
-          <div className={styles.newsletter}>
-            <span className={styles.linkTitle}>Stay in the loop</span>
-            <p className={styles.newsletterDesc}>New drops and exclusive deals — straight to your inbox.</p>
-            <div className={styles.emailRow}>
-              <input type="email" placeholder="your@email.com" className={styles.emailInput} />
-              <button className={styles.emailBtn}>Subscribe</button>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.divider} />
-
         {/* Bottom */}
         <div className={styles.bottomRow}>
           <span className={styles.copy}>© {new Date().getFullYear()} UKAY Studio. All rights reserved.</span>
@@ -67,6 +35,7 @@ export default function CustomerFooter() {
             <Link href="#" className={styles.bottomLink}>Terms of Service</Link>
           </div>
         </div>
+
       </div>
     </footer>
   )

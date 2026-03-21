@@ -8,6 +8,49 @@ function createAdminClient() {
   )
 }
 
+export async function GET() {
+  const supabase = createAdminClient()
+
+  // Fetch inquiries and join product image + price from products table
+  const { data: inquiries, error } = await supabase
+    .from('inquiries')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 })
+  }
+
+  // Enrich with product image and price
+  const productIds = [...new Set(inquiries.map(i => i.product_id).filter(Boolean))]
+  let productMap = {}
+
+  if (productIds.length > 0) {
+    const { data: products } = await supabase
+      .from('products')
+      .select('id, images, price, discount')
+      .in('id', productIds)
+
+    if (products) {
+      products.forEach(p => {
+        productMap[p.id] = {
+          product_image: p.images?.[0] || null,   // first image for table thumb
+          product_images: p.images || [],           // all images for modal gallery
+          product_price: p.price,
+          product_discount: p.discount || 0,
+        }
+      })
+    }
+  }
+
+  const enriched = inquiries.map(i => ({
+    ...i,
+    ...(productMap[i.product_id] || {}),
+  }))
+
+  return NextResponse.json({ success: true, inquiries: enriched })
+}
+
 export async function POST(request) {
   const supabase = createAdminClient()
 
@@ -28,7 +71,6 @@ export async function POST(request) {
     }])
 
     if (error) {
-      console.error('Inquiry DB Error:', error.message)
       return NextResponse.json({ success: false, error: error.message }, { status: 500 })
     }
 
