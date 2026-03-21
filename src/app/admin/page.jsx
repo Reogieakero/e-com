@@ -11,6 +11,7 @@ import Orders from '../../components/admin/Orders';
 import Customers from '../../components/admin/Customers';
 import Settings from '../../components/admin/Settings';
 import { ThemeProvider, useTheme } from '../../context/ThemeContext';
+import AdminDesktopOnly from '../../components/admin/AdminDesktopOnly';
 import styles from './Admin.module.css';
 
 function AdminContent() {
@@ -77,8 +78,10 @@ function AdminContent() {
 
 export default function AdminRoot() {
   return (
-    <ThemeProvider>
-      <AdminContent />
-    </ThemeProvider>
+    <AdminDesktopOnly>
+      <ThemeProvider>
+        <AdminContent />
+      </ThemeProvider>
+    </AdminDesktopOnly>
   );
 }

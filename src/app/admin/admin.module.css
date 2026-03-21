@@ -24,10 +24,3 @@
 .adminMain.collapsed {
   margin-left: 72px;
 }
-
-@media (max-width: 768px) {
-  .adminMain {
-    padding: 1rem;
-    margin-left: 0;
-  }
-}
