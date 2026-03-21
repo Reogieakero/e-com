@@ -11,7 +11,7 @@ import Orders from '../../components/admin/Orders';
 import Customers from '../../components/admin/Customers';
 import Settings from '../../components/admin/Settings';
 import { ThemeProvider, useTheme } from '../../context/ThemeContext';
-import styles from './admin.module.css';
+import styles from './Admin.module.css';
 
 function AdminContent() {
   const { activeView, isCollapsed, handleNavigate, toggleSidebar } = useSidebar('dashboard');
