@@ -12,7 +12,7 @@ import Customers from '../../components/admin/Customers';
 import Settings from '../../components/admin/Settings';
 import { ThemeProvider, useTheme } from '../../context/ThemeContext';
 import AdminDesktopOnly from '../../components/admin/AdminDesktopOnly';
-import styles from './Admin.module.css';
+import styles from './admin.module.css';
 
 function AdminContent() {
   const { activeView, isCollapsed, handleNavigate, toggleSidebar } = useSidebar('dashboard');
