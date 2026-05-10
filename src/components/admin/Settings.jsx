@@ -127,7 +127,7 @@ export default function Settings() {
         <div className={styles.aboutCard}>
           <div className={styles.aboutRow}>
             <span className={styles.aboutLabel}>Application</span>
-            <span className={styles.aboutValue}>Ukay-Ecom Admin</span>
+            <span className={styles.aboutValue}>Tech-Ecom Admin</span>
           </div>
           <div className={styles.aboutRow}>
             <span className={styles.aboutLabel}>Version</span>

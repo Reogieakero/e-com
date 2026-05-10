@@ -24,7 +24,7 @@ function Navbar() {
       {/* Brand — same style as CustomerNavbar */}
       <div className={styles.brand}>
         <span className={styles.brandIcon}>✦</span>
-        <span className={styles.brandName}>UKAY</span>
+        <span className={styles.brandName}>Tech</span>
         <span className={styles.brandSub}>STUDIO</span>
       </div>
 

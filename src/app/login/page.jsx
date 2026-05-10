@@ -51,7 +51,7 @@ export default function LoginPage() {
           </svg>
         </div>
 
-        <h1 className={styles.brandName}>UKAY</h1>
+        <h1 className={styles.brandName}>Tech</h1>
         <p className={styles.brandTagline}>
           Pre-loved fashion,<br />reimagined for everyone.
         </p>
@@ -131,7 +131,7 @@ export default function LoginPage() {
           </form>
 
           <p className={styles.footer}>
-            Ukay E-Commerce &copy; {new Date().getFullYear()} &middot; Admin Portal
+            Tech E-Commerce &copy; {new Date().getFullYear()} &middot; Admin Portal
           </p>
         </div>
       </div>

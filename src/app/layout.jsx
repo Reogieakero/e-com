@@ -16,8 +16,8 @@ const kulimPark = Kulim_Park({
 });
 
 export const metadata = {
-  title: "Ukay Admin — E-Commerce Dashboard",
-  description: "Ukay E-Commerce Administration Portal",
+  title: "Tech dmin — E-Commerce Dashboard",
+  description: "Tech E-Commerce Administration Portal",
 };
 
 export default function RootLayout({ children }) {

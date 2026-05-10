@@ -6,7 +6,7 @@ import CustomerFooter from '../components/customer/CustomerFooter'
 import styles from './customer.module.css'
 
 export const metadata = {
-  title: 'UKAY — Curated Pre-loved Fashion',
+  title: 'Tech — Curated Pre-loved Fashion',
   description: 'Discover unique pre-loved fashion pieces at unbeatable prices.',
 }
 
