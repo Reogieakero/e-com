@@ -11,7 +11,7 @@ export default function CustomerFooter() {
         <div className={styles.topRow}>
           <div className={styles.brand}>
             <span className={styles.brandIcon}>✦</span>
-            <span className={styles.brandName}>UKAY</span>
+            <span className={styles.brandName}>Tech</span>
             <span className={styles.brandSub}>STUDIO</span>
           </div>
           <p className={styles.tagline}>
@@ -29,7 +29,7 @@ export default function CustomerFooter() {
 
         {/* Bottom */}
         <div className={styles.bottomRow}>
-          <span className={styles.copy}>© {new Date().getFullYear()} UKAY Studio. All rights reserved.</span>
+          <span className={styles.copy}>© {new Date().getFullYear()} Tech Products. All rights reserved.</span>
           <div className={styles.bottomLinks}>
             <Link href="#" className={styles.bottomLink}>Privacy Policy</Link>
             <Link href="#" className={styles.bottomLink}>Terms of Service</Link>

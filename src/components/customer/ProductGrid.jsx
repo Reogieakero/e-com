@@ -2,15 +2,17 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import styles from './ProductGrid.module.css'
-import { FiHeart, FiShoppingBag, FiPackage } from 'react-icons/fi'
+import { FiHeart, FiShoppingBag, FiPackage, FiCpu } from 'react-icons/fi'
 
-const categories = ['All', 'New Arrivals', 'Sale', 'Tops', 'Bottoms', 'Dresses', 'Outerwear', 'General']
+const categories = ['All', 'Laptops', 'PC Components', 'Peripherals', 'Mobile Phones', 'Software', 'Sale']
 
 export default function ProductGrid({ products = [], hideFilters = false }) {
   const [activeCategory, setActiveCategory] = useState('All')
   const [wishlist, setWishlist] = useState([])
 
-  const toggleWishlist = (id) => {
+  const toggleWishlist = (e, id) => {
+    e.preventDefault()
+    e.stopPropagation()
     setWishlist(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])
   }
 
@@ -25,37 +27,35 @@ export default function ProductGrid({ products = [], hideFilters = false }) {
     <section id="products" className={styles.section}>
       <div className={styles.inner}>
 
-        {/* Section header */}
         <div className={styles.sectionHeader}>
           <div className={styles.sectionLeft}>
-            <span className={styles.sectionEyebrow}>— The Collection</span>
-            <h2 className={styles.sectionTitle}>Shop the<br />Latest Finds</h2>
+            <span className={styles.sectionEyebrow}>— Premium Inventory</span>
+            <h2 className={styles.sectionTitle}>High-Performance<br />Tech Gear</h2>
           </div>
           <div className={styles.sectionRight}>
             <p className={styles.sectionDesc}>
-              Every piece is personally inspected and curated.<br />
-              Authentic quality at unbeatable prices.
+              Engineered for excellence. We source only the highest grade <br />
+              components and hardware for your next build.
             </p>
             <div className={styles.statsRow}>
               <div className={styles.stat}>
                 <span className={styles.statNum}>{products.length}</span>
-                <span className={styles.statLabel}>Total Pieces</span>
+                <span className={styles.statLabel}>SKUs Total</span>
               </div>
               <div className={styles.statDivider} />
               <div className={styles.stat}>
                 <span className={styles.statNum}>{inStock}</span>
-                <span className={styles.statLabel}>In Stock</span>
+                <span className={styles.statLabel}>Ready to Ship</span>
               </div>
               <div className={styles.statDivider} />
               <div className={styles.stat}>
-                <span className={`${styles.statNum} ${styles.statOrange}`}>{onSale}</span>
-                <span className={styles.statLabel}>On Sale</span>
+                <span className={`${styles.statNum} ${styles.statBlue}`}>{onSale}</span>
+                <span className={styles.statLabel}>Deals Active</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Category filter */}
         {!hideFilters && <div className={styles.filterBar}>
           {categories.map(cat => (
             <button
@@ -73,12 +73,11 @@ export default function ProductGrid({ products = [], hideFilters = false }) {
           ))}
         </div>}
 
-        {/* Product grid */}
         {filtered.length === 0 ? (
           <div className={styles.empty}>
-            <FiPackage size={48} />
-            <p>No products in this category yet.</p>
-            <span>Check back soon — new pieces drop regularly.</span>
+            <FiCpu size={48} />
+            <p>Hardware catalog currently offline.</p>
+            <span>Our technicians are restocking these categories. Check back soon.</span>
           </div>
         ) : (
           <div className={styles.grid}>
@@ -96,50 +95,46 @@ export default function ProductGrid({ products = [], hideFilters = false }) {
                   className={`${styles.card} ${isSoldOut ? styles.cardSoldOut : ''}`}
                   style={{ animationDelay: `${(i % 8) * 0.07}s` }}
                 >
-                  {/* Image */}
                   <div className={styles.cardImg}>
                     {item.images?.[0]
                       ? <img src={item.images[0]} alt={item.name} className={styles.img} />
                       : (
                         <div className={styles.imgPlaceholder}>
-                          <FiPackage size={32} />
+                          <FiCpu size={32} />
                         </div>
                       )
                     }
 
-                    {/* Badges */}
                     <div className={styles.badges}>
                       {discountPct > 0 && <span className={styles.badgeSale}>−{discountPct}%</span>}
-                      {isLowStock && !isSoldOut && <span className={styles.badgeLow}>Only {item.stock} left</span>}
+                      {isLowStock && !isSoldOut && <span className={styles.badgeLow}>Only {item.stock} units left</span>}
                     </div>
 
                     {isSoldOut && (
                       <div className={styles.soldOutOverlay}>
-                        <span>Sold Out</span>
+                        <span>Out of Stock</span>
                       </div>
                     )}
 
-                    {/* Hover actions */}
                     <div className={styles.cardActions}>
                       <button
                         className={`${styles.wishBtn} ${isWished ? styles.wished : ''}`}
-                        onClick={() => toggleWishlist(item.id)}
-                        title="Wishlist"
+                        onClick={(e) => toggleWishlist(e, item.id)}
+                        title="Save to Wishlist"
                       >
-                        <FiHeart size={16} fill={isWished ? '#f97316' : 'none'} />
+                        <FiHeart size={16} fill={isWished ? '#3b82f6' : 'none'} />
                       </button>
                       {!isSoldOut && (
                         <button className={styles.bagBtn}>
                           <FiShoppingBag size={15} />
-                          <span>Add to Bag</span>
+                          <span>Buy Now</span>
                         </button>
                       )}
                     </div>
                   </div>
 
-                  {/* Info */}
                   <div className={styles.cardInfo}>
-                    <span className={styles.cardCategory}>{item.category || 'General'}</span>
+                    <span className={styles.cardCategory}>{item.category || 'Hardware'}</span>
                     <p className={styles.cardName}>{item.name}</p>
 
                     {item.description?.length > 0 && (
@@ -147,9 +142,9 @@ export default function ProductGrid({ products = [], hideFilters = false }) {
                     )}
 
                     <div className={styles.cardPriceRow}>
-                      <span className={styles.cardPrice}>₱{finalPrice.toFixed(2)}</span>
+                      <span className={styles.cardPrice}>₱{finalPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                       {item.discount > 0 && (
-                        <span className={styles.cardOldPrice}>₱{item.price.toFixed(2)}</span>
+                        <span className={styles.cardOldPrice}>₱{item.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                       )}
                     </div>
                   </div>

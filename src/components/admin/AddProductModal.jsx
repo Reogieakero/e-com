@@ -14,7 +14,18 @@ const AddProductModal = ({ isOpen, onClose }) => {
   const [categoryOpen, setCategoryOpen] = useState(false)
   const categoryRef = useRef(null)
 
-  // Live discount calculations
+  const techCategories = [
+    'Laptops',
+    'PC Components',
+    'Peripherals',
+    'Mobile Phones',
+    'Audio',
+    'Storage',
+    'Networking',
+    'Software',
+    'Sale'
+  ]
+
   const priceNum = parseFloat(price) || 0
   const discountPctNum = Math.min(parseFloat(discountPct) || 0, 100)
   const discountAmount = useMemo(() => (priceNum * discountPctNum) / 100, [priceNum, discountPctNum])
@@ -70,11 +81,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
 
     try {
       const formData = new FormData(e.target)
-
-      // Override discount: send computed peso amount, not the percentage
       formData.set('discount', discountAmount.toFixed(2))
-
-      // Attach non-empty bullet points
       const filledBullets = bullets.filter(b => b.trim() !== '')
       filledBullets.forEach(b => formData.append('description[]', b.trim()))
 
@@ -86,7 +93,6 @@ const AddProductModal = ({ isOpen, onClose }) => {
         return
       }
 
-      // Reset
       setSelectedImages([])
       setBullets([''])
       setPrice('')
@@ -104,32 +110,27 @@ const AddProductModal = ({ isOpen, onClose }) => {
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>
-          <h2>Add New Product</h2>
+          <h2>Add New Tech Product</h2>
           <button className={styles.closeBtn} onClick={onClose}><FiX /></button>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
-
-          {/* Photos */}
           <div className={styles.formGroup}>
             <label>Product Photos <span className={styles.labelHint}>(Max 4)</span></label>
             <div className={styles.fileUploadArea}>
               <FiUploadCloud size={22} />
-              <span>{selectedImages.length > 0 ? `${selectedImages.length} image(s) selected` : 'Click to upload photos'}</span>
+              <span>{selectedImages.length > 0 ? `${selectedImages.length} image(s) selected` : 'Click to upload hardware photos'}</span>
               <input name="images" type="file" accept="image/*" multiple onChange={handleFileChange} className={styles.fileInput} />
             </div>
           </div>
 
-          {/* Name */}
           <div className={styles.formGroup}>
-            <label>Item Name</label>
-            <input name="name" placeholder="Enter product name" required />
+            <label>Product Name</label>
+            <input name="name" placeholder="e.g., Ryzen 9 7950X or MacBook Pro M3" required />
           </div>
 
-          {/* Category — custom dropdown */}
           <div className={styles.formGroup}>
             <label>Category</label>
-            {/* Hidden input carries the value for form submission */}
             <input type="hidden" name="category" value={category} />
             <div className={styles.customSelect} ref={categoryRef}>
               <button
@@ -137,13 +138,13 @@ const AddProductModal = ({ isOpen, onClose }) => {
                 className={`${styles.customSelectTrigger} ${categoryOpen ? styles.customSelectOpen : ''} ${category ? styles.customSelectFilled : ''}`}
                 onClick={() => setCategoryOpen(o => !o)}
               >
-                <span>{category || 'Select a category'}</span>
+                <span>{category || 'Select tech category'}</span>
                 <FiChevronDown size={14} className={`${styles.customSelectChevron} ${categoryOpen ? styles.chevronUp : ''}`} />
               </button>
 
               {categoryOpen && (
                 <div className={styles.customSelectDropdown}>
-                  {['New Arrivals', 'Sale', 'Tops', 'Bottoms', 'Dresses', 'Outerwear', 'General'].map(opt => (
+                  {techCategories.map(opt => (
                     <button
                       key={opt}
                       type="button"
@@ -159,10 +160,9 @@ const AddProductModal = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Price / Discount % / Stock */}
           <div className={styles.formRow3}>
             <div className={styles.formGroup}>
-              <label>Price (₱)</label>
+              <label>MSRP (₱)</label>
               <input
                 name="price"
                 type="number"
@@ -191,17 +191,16 @@ const AddProductModal = ({ isOpen, onClose }) => {
               </div>
             </div>
             <div className={styles.formGroup}>
-              <label>Stock</label>
+              <label>Units in Stock</label>
               <input name="stock" type="number" min="0" placeholder="0" required />
             </div>
           </div>
 
-          {/* Live discount preview */}
           {hasDiscount && (
             <div className={styles.discountPreview}>
               <div className={styles.discountPreviewLeft}>
-                <span className={styles.discountBadge}>−{discountPctNum}%</span>
-                <span className={styles.discountSaving}>You save ₱{discountAmount.toFixed(2)}</span>
+                <span className={styles.discountBadge}>−{discountPctNum}% OFF</span>
+                <span className={styles.discountSaving}>Savings: ₱{discountAmount.toFixed(2)}</span>
               </div>
               <div className={styles.discountPreviewRight}>
                 <span className={styles.discountOriginal}>₱{priceNum.toFixed(2)}</span>
@@ -210,12 +209,11 @@ const AddProductModal = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          {/* Description bullets */}
           <div className={styles.formGroup}>
             <div className={styles.labelRow}>
-              <label>Description <span className={styles.labelHint}>(bullet points)</span></label>
+              <label>Technical Specifications <span className={styles.labelHint}>(Bullets)</span></label>
               <button type="button" className={styles.addBulletBtn} onClick={addBullet} disabled={bullets.length >= 8}>
-                <FiPlus size={12} /> Add
+                <FiPlus size={12} /> Add Spec
               </button>
             </div>
             <div className={styles.bulletList}>
@@ -227,7 +225,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
                     value={bullet}
                     onChange={(e) => handleBulletChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(e, index)}
-                    placeholder={`Feature or detail ${index + 1}`}
+                    placeholder={index === 0 ? "e.g., 32GB DDR5 6000MHz" : `Spec ${index + 1}`}
                     className={styles.bulletInput}
                     autoFocus={index === bullets.length - 1 && bullets.length > 1}
                   />
@@ -242,17 +240,17 @@ const AddProductModal = ({ isOpen, onClose }) => {
                 </div>
               ))}
             </div>
-            <p className={styles.bulletHint}>Press Enter to add • Backspace on empty line to remove</p>
+            <p className={styles.bulletHint}>Press Enter for next spec • Backspace to clear</p>
           </div>
 
           {error && <p className={styles.errorText}>{error}</p>}
 
           <div className={styles.actions}>
             <button type="button" className={styles.cancelBtn} onClick={onClose} disabled={isSubmitting}>
-              Cancel
+              Discard
             </button>
             <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
-              {isSubmitting ? 'Saving...' : 'Save Product'}
+              {isSubmitting ? 'Processing...' : 'List Product'}
             </button>
           </div>
         </form>

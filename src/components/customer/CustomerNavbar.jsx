@@ -2,15 +2,15 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from './CustomerNavbar.module.css'
-import { FiMenu, FiX } from 'react-icons/fi'
+import { FiMenu, FiX, FiCpu } from 'react-icons/fi'
 
 const navLinks = [
-  { label: 'New Arrivals', href: '/new-arrivals' },
-  { label: 'Tops',         href: '/#products' },
-  { label: 'Bottoms',      href: '/#products' },
-  { label: 'Dresses',      href: '/#products' },
-  { label: 'Outerwear',    href: '/#products' },
-  { label: 'Sale',         href: '/sale' },
+  { label: 'Laptops', href: '/#products' },
+  { label: 'PC Components', href: '/#products' },
+  { label: 'Peripherals', href: '/#products' },
+  { label: 'Mobile Phones', href: '/#products' },
+  { label: 'Software', href: '/#products' },
+  { label: 'Sale', href: '/sale' },
 ]
 
 export default function CustomerNavbar() {
@@ -27,22 +27,18 @@ export default function CustomerNavbar() {
     <>
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.navInner}>
-
-          {/* Left — links */}
           <div className={styles.navLeft}>
             {navLinks.slice(0, 3).map(link => (
               <Link key={link.label} href={link.href} className={styles.navLink}>{link.label}</Link>
             ))}
           </div>
 
-          {/* Center — brand */}
           <Link href="/" className={styles.brand}>
-            <span className={styles.brandIcon}>✦</span>
-            <span className={styles.brandName}>UKAY</span>
+            <span className={styles.brandIcon}><FiCpu /></span>
+            <span className={styles.brandName}>Tech</span>
             <span className={styles.brandSub}>STUDIO</span>
           </Link>
 
-          {/* Right — links + hamburger */}
           <div className={styles.navRight}>
             {navLinks.slice(3).map(link => (
               <Link
@@ -60,13 +56,12 @@ export default function CustomerNavbar() {
         </div>
       </nav>
 
-      {/* Mobile drawer */}
       <div className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}>
         <button className={styles.drawerClose} onClick={() => setMenuOpen(false)}>
           <FiX size={22} />
         </button>
         <Link href="/" className={styles.drawerBrand}>
-          <span className={styles.brandIcon}>✦</span> UKAY STUDIO
+          <span className={styles.brandIcon}><FiCpu /></span> Tech Catalog
         </Link>
         <div className={styles.drawerLinks}>
           {navLinks.map(link => (

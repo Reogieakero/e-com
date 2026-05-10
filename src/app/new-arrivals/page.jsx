@@ -4,7 +4,7 @@ import CustomerFooter from '../../components/customer/CustomerFooter'
 import ProductGrid from '../../components/customer/ProductGrid'
 import styles from './new-arrivals.module.css'
 
-export const metadata = { title: 'New Arrivals — UKAY Studio' }
+export const metadata = { title: 'New Arrivals — Tech Products' }
 export const revalidate = 60
 
 export default async function NewArrivalsPage() {

@@ -34,7 +34,7 @@ export default function AdminDesktopOnly({ children }) {
           </p>
           <div className={styles.badge}>
             <span className={styles.badgeDot} />
-            Admin Portal — UKAY Studio
+            Admin Portal — Tech Products
           </div>
         </div>
       </div>

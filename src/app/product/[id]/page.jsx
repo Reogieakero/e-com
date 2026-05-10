@@ -11,7 +11,7 @@ export async function generateMetadata({ params }) {
     process.env.SUPABASE_SERVICE_ROLE_KEY
   )
   const { data } = await supabase.from('products').select('name').eq('id', id).single()
-  return { title: data?.name ? `${data.name} — UKAY Studio` : 'Product — UKAY Studio' }
+  return { title: data?.name ? `${data.name} — Tech Products` : 'Product — Tech Products' }
 }
 
 export default async function ProductPage({ params }) {
